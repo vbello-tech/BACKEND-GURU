@@ -11,7 +11,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("Challenge.urls", namespace="challenge")),
     path('project/', include("Project.urls", namespace="project")),
-    path('accounts/', include("Accounts.urls", namespace="user")),
+    path('accounts/', include('allauth.urls')),
 ]
 
 if settings.DEBUG:
