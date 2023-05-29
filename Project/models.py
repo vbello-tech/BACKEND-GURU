@@ -1,12 +1,13 @@
 from django.db import models
 from django.utils import timezone
 from django.conf import settings
+from Accounts.models import User as user
 
 # Create your models here.
 
 
 class Project(models.Model):
-    author = models.ForeignKey('settings.AUTH_USER_MODEL', on_delete=models.CASCADE)
+    author = models.ForeignKey(user, on_delete=models.CASCADE)
     project_name = models.CharField(max_length=250)
     project_description = models.TextField()
     project_image = models.ImageField(upload_to="project/")

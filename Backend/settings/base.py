@@ -42,7 +42,7 @@ ALLOWED_HOSTS = [
 INSTALLED_APPS = [
     #project app
     'Challenge',
-    #'Project',
+    'Project',
     'Accounts',
 
     'django.contrib.admin',
