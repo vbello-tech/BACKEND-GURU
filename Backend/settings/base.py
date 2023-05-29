@@ -30,10 +30,10 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'backendguru.fly.dev',
     '0.0.0.0',
     'localhost',
     '127.0.0.1',
+    'backendguru.up.railway.app',
 ]
 
 
