@@ -3,6 +3,9 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractUser, PermissionsMixin, BaseUserManager
 import uuid
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.core.exceptions import ObjectDoesNotExist
 #from shortuuid.django_fields import ShortUUIDField
 
 
@@ -51,8 +54,6 @@ class User(AbstractUser):
     twitter = models.URLField(blank=True, null=True)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
-
-
     objects = CustomUserManager()
 
     USERNAME_FIELD = 'email'
@@ -65,3 +66,9 @@ class User(AbstractUser):
 
     def __str__(self):
         return f'{self.username}'
+
+class Person(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    p_code = models.SlugField()
+
+
