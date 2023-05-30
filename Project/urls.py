@@ -8,5 +8,7 @@ from .views import *
 app_name = "project"
 
 urlpatterns = [
-    path('projects/', allprojects, name="projects"),
+    path('create-project/', CreateProjectView.as_view(), name="create_project"),
+    path('all-projects/', ProjectListView.as_view(), name="project_list"),
+    path('project/<str:name>/<int:pk>/', projectdetail, name="project_detail"),
 ]

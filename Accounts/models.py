@@ -2,6 +2,8 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractUser, PermissionsMixin, BaseUserManager
+import uuid
+#from shortuuid.django_fields import ShortUUIDField
 
 
 class CustomUserManager(BaseUserManager):
@@ -47,6 +49,7 @@ class User(AbstractUser):
     linkedin = models.URLField(blank=True, null=True)
     portfolio = models.URLField(blank=True, null=True)
     twitter = models.URLField(blank=True, null=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
 
 

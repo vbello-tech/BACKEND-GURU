@@ -13,7 +13,7 @@ class Project(models.Model):
     project_image = models.ImageField(upload_to="project/")
     project_url = models.URLField(blank=True, null=True)
     github_url = models.URLField()
-    published_date = models.DateTimeField(default=timezone.now)
+    posted_date = models.DateTimeField(default=timezone.now)
 
 
     def __str__(self):

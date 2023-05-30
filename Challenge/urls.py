@@ -8,5 +8,5 @@ from .views import *
 app_name = "challenege"
 
 urlpatterns = [
-    path('', welcome, name="welcome"),
+    path('', home, name="home_page"),
 ]

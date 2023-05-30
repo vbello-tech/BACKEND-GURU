@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+{% for item in projects %}
+{{ item.project_name }}<a href="{% url 'project:project_detail' pk=item.pk name=item.project_name %}">view</a>
+<br>
+{% endfor %}
+
+{% endblock body %}
