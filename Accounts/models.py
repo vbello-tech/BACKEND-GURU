@@ -67,8 +67,5 @@ class User(AbstractUser):
     def __str__(self):
         return f'{self.username}'
 
-class Person(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    p_code = models.SlugField()
 
 
