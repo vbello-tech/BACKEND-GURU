@@ -1,5 +1,5 @@
 from .base import *
-
+import dj_database_url
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -8,7 +8,7 @@ from .base import *
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
-}"""
+}
 
 DATABASES = {
     'default': {
@@ -19,4 +19,10 @@ DATABASES = {
         'HOST': config('DB_HOST'),
         'PORT': config('DB_PORT'),
     }
+}"""
+
+DATABASES = {
+    'default':  dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
 }
