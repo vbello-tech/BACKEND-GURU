@@ -36,9 +36,36 @@ class ProjectListView(ListView):
     def get_queryset(self):
         return Project.objects.order_by('-posted_date')
 
-def projectdetail(request, pk, name):
-    project = Project.objects.get(pk=pk, project_name=name)
+class ProjectDetailView(View):
+    def get(self, request, slug, name, *args, **kwargs):
+        project = Project.objects.get(slug=slug, project_name=name)
+        form = ReviewForm(request.POST)
+        context = {
+            'project': project,
+            'form':form,
+        }
+        return render(request, 'Projects/projectdetail.html', context)
+
+    def post(self, request, slug, name, *rgs, **kwargs):
+        project = Project.objects.get(slug=slug, project_name=name)
+        form = ReviewForm(request.POST or None)
+        if request.method == "POST":
+            if form.is_valid:
+                review = form.save(commit=False)
+                review.post = project
+                review.author = request.user
+                review.save()
+                return redirect(project.get_url())
+            else:
+                return redirect(project.get_url())
+
+def delete(request, pk):
+    project = get_object_or_404(Project, pk=pk)
+    if request.method == "POST":
+        project.delete()
+        return redirect(project.get_url())
+
     context = {
-        'project': project,
+        'project': project
     }
-    return render(request, 'Projects/projectdetail.html', context)
+    return render(request, 'Projects/delete.html', context)

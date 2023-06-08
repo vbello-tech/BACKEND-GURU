@@ -12,6 +12,8 @@
      <li><a href="{% url 'account_login' %}" class="nav-links nav-links-btn">LOGIN</a></li>
     {% endif %}
     <li><a href="/">HOME</a> </li>
+    <li><a href="{% url 'project:create_project' %}" class="nav-links nav-links-btn">CREATE</a></li>
+    <li><a href="{% url 'project:project_list' %}" class="nav-links nav-links-btn">LIST</a></li>
 </ul>
 {% block body %}
 

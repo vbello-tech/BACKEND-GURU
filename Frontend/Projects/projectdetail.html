@@ -4,6 +4,22 @@
 
 
 {{ project.project_name }}
+<br>
+ <img src="{{ project.project_image.url }}" width="50px" height="50px"/>
+<br>
+<p>{{ project.project_description }}</p>
+<br>
 
+<form method="POST" class="form">
+     {% csrf_token %}
+     {{ form.as_p }}
+     <br>
+    <button type="submit" id="form-submit" class="main-button">POST</button>
+ </form>
+
+{% for comment in project.project_reviews.all %}
+    {{ comment.review }}
+<br>
+{% endfor %}
 
 {% endblock body %}

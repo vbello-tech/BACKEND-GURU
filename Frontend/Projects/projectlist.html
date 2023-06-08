@@ -3,7 +3,11 @@
 {% block body %}
 
 {% for item in projects %}
-{{ item.project_name }}<a href="{% url 'project:project_detail' pk=item.pk name=item.project_name %}">view</a>
+{{ item.project_name }}|<a href="{{ item.get_url }}">view</a>|<a href="{{ item.delete }}">delete</a>
+<br>
+ <img src="{{ item.project_image.url }}" width="50px" height="50px"/>
+<br>
+<p>{{ item.project_description }}</p>
 <br>
 {% endfor %}
 
